@@ -14,7 +14,6 @@ int cal(int n){
 int rest(int a,int b){
     return 6-a-b;
 }
-
 void move(int s, int e){
     // s에 있는거 e로 옮기기
     cout << s << " " << e << '\n';

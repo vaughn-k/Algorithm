@@ -26,9 +26,8 @@ int vt[1000002];
 int dp[1000002][2];
 
 int run(int now, int type){
-    // cout << "in now : " << now << endl;
     // now 정점을 type으로 했을때 최소값 리턴
-    // 0 : 일반인 / 1 : 얼리어답터
+    // type = 0 : 일반인 / 1 : 얼리어답터
     int next;
     int r1;
     int r2;
@@ -39,20 +38,20 @@ int run(int now, int type){
         return dp[now][type];
     }
 
-    for(int i=0;i<v[now].size();i++){
+    for(int i=0;i<v[now].size();i++){ // 해당 정점에서 갈수있는 정점 모두 탐색
         next = v[now][i];
         r1 = 99999999;
         r2 = 99999999;
-        if(vt[next] == -1){ // 방문 전
+        if(vt[next] == -1){ // 다음노드가 아직 방문전이라면
             vt[next] = 1;
-            if(type == 1){
+            if(type == 1){ // 현재 자신이 얼리어답터라면 다음 정점은 일반인이 될수있다.
                 r1 = run(next,0);
             }
-            r2 = run(next, 1);
+            r2 = run(next, 1); // 현재 자신이 일반인이던 얼리어답터건 다음 정점은 얼리어답터가 될수있다.
             vt[next] = -1;
         }
         if(!(r1 >= 99999999 && r2 >= 99999999)){
-            if(r1 < r2){
+            if(r1 < r2){ // 다음 정점이 일반인, 얼리어답터 중에 더 적은 얼리어답터를 만든 경우를 계속 합산
                 total = total + r1;
             }
             else{
@@ -61,7 +60,7 @@ int run(int now, int type){
         }
     }
 
-    if(type == 1){
+    if(type == 1){ // 최종 최소치에 자신이 얼리어답터라면 본인도 포함
         total = total + 1;
     }
     dp[now][type] = total;
