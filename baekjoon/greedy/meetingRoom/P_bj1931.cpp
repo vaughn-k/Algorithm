@@ -45,7 +45,6 @@ int main(){
 
     while(pq.size() > 0){
         sub = pq.top();
-        // cout << "start : " << sub.start << " | end : " << sub.end << endl;
         if(end <= sub.start){
             tot++;
             end = sub.end;
