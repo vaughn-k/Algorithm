@@ -37,6 +37,8 @@ priority_queue<Location, vector<Location>, cmp> pq2;
 int n;
 int map[21][21];
 int visited[21][21];
+int di[] = {-1,1,0,0};
+int dj[] = {0,0,-1,1};
 
 void reset_visited(){
     for(int i=0;i<n;i++){
@@ -57,6 +59,7 @@ int shark(int now_i, int now_j, int level, int eat){
     tmp.i = now_i;
     tmp.j = now_j;
     pq1.push(tmp);
+    int ni,nj;
 
     if(level == eat){
         level++;
@@ -70,40 +73,18 @@ int shark(int now_i, int now_j, int level, int eat){
             map[now.i][now.j] = 0;
             return shark(now.i,now.j,level,eat+1) + move;
         }
-
-        if(now.i > 0){ // 위로 이동가능하면서, 물고기 크기가 자신보다 작을때
-            if(map[now.i-1][now.j] <= level && visited[now.i-1][now.j] == 0){
-                visited[now.i-1][now.j] = 1;
-                tmp.i = now.i-1;
-                tmp.j = now.j;
-                pq2.push(tmp);
+        for(int k=0;k<4;k++){
+            ni = now.i + di[k];
+            nj = now.j + dj[k];
+            if(ni >= 0 && nj >= 0 && ni < n && nj < n){
+                if(map[ni][nj] <= level && visited[ni][nj] == 0){
+                    visited[ni][nj] = 1;
+                    tmp.i = ni;
+                    tmp.j = nj;
+                    pq2.push(tmp);
+                }
             }
         }
-        if(now.i < (n-1) && visited[now.i+1][now.j] == 0){ // 아래로 이동가능하면서, 물고기 크기가 자신보다 작을때
-            if(map[now.i+1][now.j] <= level){
-                visited[now.i+1][now.j] = 1;
-                tmp.i = now.i+1;
-                tmp.j = now.j;
-                pq2.push(tmp);
-            }
-        }
-        if(now.j > 0 && visited[now.i][now.j-1] == 0){ // 왼쪽 이동가능하면서, 물고기 크기가 자신보다 작을때
-            if(map[now.i][now.j-1] <= level){
-                visited[now.i][now.j-1] = 1;
-                tmp.i = now.i;
-                tmp.j = now.j-1;
-                pq2.push(tmp);
-            }
-        }
-        if(now.j < (n-1) && visited[now.i][now.j+1] == 0){ // 오르쪽 이동가능하면서, 물고기 크기가 자신보다 작을때
-            if(map[now.i][now.j+1] <= level){
-                visited[now.i][now.j+1] = 1;
-                tmp.i = now.i;
-                tmp.j = now.j+1;
-                pq2.push(tmp);
-            }
-        }
-        
         if(pq1.size() == 0){
             pq1 = pq2;
             while(pq2.size() > 0){pq2.pop();}
