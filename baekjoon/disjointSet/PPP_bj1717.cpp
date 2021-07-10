@@ -10,6 +10,7 @@
 + 시간초과 
     ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
+    
 로 해결하기
 
 */

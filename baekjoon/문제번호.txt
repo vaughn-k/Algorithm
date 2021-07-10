@@ -53,4 +53,11 @@ greedy
     directSpecify
         직관적으로 가장 최적이 되는 방향으로 바로 배정하는 문제들
     
-    
+implement
+    다양한 자료구조를 활용해서 구현을 설계하거나 구현상에서의 특정값을 도출해내는 문제들 
+
+separatedSet
+    분리 집합 문제들
+
+tow-pointer
+    두포인터를 활용한 문제들

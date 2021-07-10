@@ -33,7 +33,7 @@ int main(){
         cin >> p[i];
     }
 
-    int minimum = 99999999;
+    int minimum = 99999999; // 합이 S이상인 것중 가장 짧은 길이
     bool notFound = true;
     bool tmp = true;
     int total = 0;
@@ -42,13 +42,13 @@ int main(){
     for(int i=0;i<n;i++){ // i 번째를 마지막으로 한 부분합
         if(notFound){ // 합이 S이상인것을 못찾았을때
             total = total + p[i];
-            if(total >= target){
+            if(total >= target){ // 처음으로 합이 S이상인 것을 찾았을때
                 minimum = i-s+1;
                 notFound = false;
             }
         }
         else{
-            total = total - p[s] + p[i];
+            total = total - p[s] + p[i]; // 현재 길이가 x인것을 찾았는데 그 이후로는 길이가 x이상인것은 찾을 필요가 없다.
             s = s + 1;
         }
         if(total >= target){ // 만약 minimum 개씩 합을 확인하다가 타겟보다 커지면

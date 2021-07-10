@@ -18,7 +18,7 @@ using namespace std;
 int n,m;
 int city[201][201];
 int check[1002];
-int d[201];
+int d[201]; // 현재 자신의 부모
 
 queue<int> q;
 
