@@ -24,69 +24,6 @@
 *//////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include <queue>
-#include <vector>
-
-using namespace std;
-
-priority_queue<int, vector<int>, greater<int> > pqMinus;
-priority_queue<int, vector<int>, less<int> > pqPlus;
-
-int n,m;
-
-int main(){
-    int tmp;
-    cin >> n >> m;
-    for(int i=0;i<n;i++){
-        cin >> tmp;
-        if(tmp > 0){
-            pqPlus.push(tmp);
-        }
-        else{
-            pqMinus.push(tmp);
-        }
-    }
-
-    int tot = 0;
-    int cnt = m;
-
-    int maxi;
-    if(pqMinus.size() == 0){
-        maxi = pqPlus.top();
-    }
-    else if(pqPlus.size() == 0){
-        maxi = abs(pqMinus.top());
-    }
-    else{
-        maxi = max(abs(pqMinus.top()),pqPlus.top());
-    }
-    while(pqMinus.size() > 0){
-        if(cnt == m){
-            // cout << pqMinus.top() << endl;
-            tot = tot + abs(pqMinus.top());
-        }
-        cnt--;
-        if(cnt == 0){
-            cnt = m;
-        }
-        pqMinus.pop();
-    }
-    cnt = m;
-    while(pqPlus.size() > 0){
-        if(cnt == m){
-            // cout << pqPlus.top() << endl;
-            tot = tot + abs(pqPlus.top());
-        }
-        cnt--;
-        if(cnt == 0){
-            cnt = m;
-        }
-        pqPlus.pop();
-    }
-    tot = tot * 2 - maxi;
-    cout << tot;
-}
-#include <iostream>
 #include <string>
 
 using namespace std;

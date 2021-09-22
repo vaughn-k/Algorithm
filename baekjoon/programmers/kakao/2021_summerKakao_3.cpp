@@ -1,5 +1,3 @@
-3
-
 #include <string>
 #include <vector>
 #include <stack>
