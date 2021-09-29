@@ -30,12 +30,12 @@ vector<int> v;
 
 int n,k;
 
-int divi(int start, int end){
+long divi(long start, long end){
     if(start == end){
         return start;
     }
 
-    int mid;
+    long mid;
     if(end - start == 1){
         mid = end;
     }
@@ -43,7 +43,7 @@ int divi(int start, int end){
         mid = (start+end) / 2;
     }
 
-    int tot = 0;
+    long tot = 0;
     for(int i=0;i<n;i++){
         if(v[i]/mid > 0){
             tot += v[i]/mid;
