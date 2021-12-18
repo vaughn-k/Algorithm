@@ -1,0 +1,5 @@
+.vscode/
+intro.dSYM
+output.dSYM
+not_git/
+.DS_Store
